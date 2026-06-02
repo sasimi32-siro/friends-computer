@@ -1810,7 +1810,7 @@
 
   /* ===== AUTO-SCROLL GALLERY ===== */
   .gallery-sec{padding:120px 0;overflow:hidden;background:#fff;}
-@media (min-width:769px){ .gallery-sec{ display:none !important; } }
+.gallery-sec{ display:none !important; }  /* 데스크탑·모바일 모두 숨김 */
   .gallery-sec .wrap{padding-bottom:0;}
   .gallery-sec .sec-title-left{margin-bottom:34px;}
   .gallery-track{display:flex;width:max-content;animation:gallery-scroll 26s linear infinite;will-change:transform;}
@@ -3891,10 +3891,6 @@ body.m-menu-locked {
       <div class="fcbf-box">
         <input name="phone" type="tel" placeholder="휴대폰번호" required>
         <span class="fcbf-tag req">*필수</span>
-      </div>
-      <div class="fcbf-box">
-        <input name="email" type="email" placeholder="이메일(선택)">
-        <span class="fcbf-tag">선택</span>
       </div>
       <div class="fcbf-box">
         <input name="address" type="text" placeholder="주소" required>
