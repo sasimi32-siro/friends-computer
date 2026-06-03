@@ -2215,9 +2215,9 @@ html.fonts-ready .hero-text {
 .hero-btn-primary,
     .hero-btn-primary:link,
     .hero-btn-primary:visited {
-      background: #2563EB;
+      background: #8B5CF6;
       color: #ffffff;
-      box-shadow: 0 8px 20px rgba(37, 99, 235, 0.35);
+      box-shadow: 0 8px 20px rgba(139, 92, 246, 0.35);
     }
 }
 @media (max-width: 768px) {
@@ -2230,8 +2230,9 @@ html.fonts-ready .hero-text {
 .hero-btn-soft,
     .hero-btn-soft:link,
     .hero-btn-soft:visited {
-      background: #E6ECFF;
-      color: #2563EB;
+      background: #F3F4F6;
+      color: #111827;
+      border: 1.5px solid #8B5CF6;
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
     }
 }
@@ -2338,10 +2339,10 @@ body.is-scrolled .hero {
 .hero-btn-m { flex: 0 0 auto !important; height: 44px !important; padding: 0 22px !important; border-radius: 10px !important; font-size: 13px !important; font-weight: 700 !important; letter-spacing: -0.01em !important; display: inline-flex !important; align-items: center !important; justify-content: center !important; line-height: 1 !important; white-space: nowrap !important; }
 }
 @media (max-width: 768px) {
-.hero-btn-primary, .hero-btn-primary:link, .hero-btn-primary:visited { background: #1565ff !important; color: #fff !important; box-shadow: 0 6px 16px rgba(10,71,204,0.4) !important; border: none !important; }
+.hero-btn-primary, .hero-btn-primary:link, .hero-btn-primary:visited { background: #8B5CF6 !important; color: #fff !important; box-shadow: 0 6px 16px rgba(139,92,246,0.35) !important; border: none !important; }
 }
 @media (max-width: 768px) {
-.hero-btn-soft, .hero-btn-soft:link, .hero-btn-soft:visited { background: #eef3fb !important; color: #0a3580 !important; box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important; border: none !important; }
+.hero-btn-soft, .hero-btn-soft:link, .hero-btn-soft:visited { background: #F3F4F6 !important; color: #111827 !important; box-shadow: 0 4px 12px rgba(0,0,0,0.08) !important; border: 1.5px solid #8B5CF6 !important; }
 }
 @media (max-width: 768px) {
 .hero-text > h1:not(.hero-headline-m), .hero-text .eyebrow, .hero-text .subtitle-desktop, .hero-cta, .btn-detail, .hero-mobile-scene { display: none !important; }
@@ -4542,6 +4543,11 @@ window.addEventListener('scroll',onScroll,{passive:true}); window.addEventListen
   /* 앵커 스크롤 보정(고정 헤더) */
   #sc-section,#service-section,#method-section,#process-section,#faq-section{ scroll-margin-top:96px; }
   @media (max-width:768px){ #sc-section,#service-section,#method-section,#process-section,#faq-section{ scroll-margin-top:70px; } }
+
+  /* ===== 스크롤 등장 (staggered reveal) ===== */
+  .sr{opacity:0;transform:translateY(28px) scale(.985);transition:opacity .65s cubic-bezier(.22,.61,.36,1),transform .65s cubic-bezier(.22,.61,.36,1);will-change:opacity,transform;}
+  .sr.sr-show{opacity:1;transform:none;}
+  @media (prefers-reduced-motion:reduce){ .sr{opacity:1 !important;transform:none !important;transition:none !important;} }
 </style>
 <script>
 (function(){
@@ -4579,6 +4585,30 @@ window.addEventListener('scroll',onScroll,{passive:true}); window.addEventListen
 <script type="text/javascript"> var hpt_info={'_account':'UHPT-24146', '_server': 'a26'}; </script>
 <script language="javascript" src="//cdn.smlog.co.kr/core/smart.js" charset="utf-8"></script>
 <noscript><img src="//a26.smlog.co.kr/smart_bda.php?_account=24146" style="display:none;width:0;height:0;" border="0"/></noscript>
+<script>
+/* 스크롤 시 카드 순차 등장 */
+(function(){
+  var sel='.why-card,.srv-card,.svc-card,.svc2-card,.p4-card,.feat-item,.faq-item,.fcq-channel,.why-title,.sec-title-left,.sec-title-center,.p4-head,.faq-head';
+  function run(){
+    var els=[].slice.call(document.querySelectorAll(sel));
+    if(!els.length) return;
+    if(!('IntersectionObserver' in window)){ els.forEach(function(el){el.classList.remove('fade-in');}); return; }
+    els.forEach(function(el){ el.classList.remove('fade-in'); el.classList.add('sr'); });
+    var io=new IntersectionObserver(function(entries){
+      var shown=entries.filter(function(e){return e.isIntersecting;});
+      shown.sort(function(a,b){return a.boundingClientRect.top-b.boundingClientRect.top;});
+      shown.forEach(function(e,i){
+        var el=e.target;
+        el.style.transitionDelay=(Math.min(i,8)*90)+'ms';
+        el.classList.add('sr-show');
+        io.unobserve(el);
+      });
+    },{threshold:0.12, rootMargin:'0px 0px -8% 0px'});
+    els.forEach(function(el){ io.observe(el); });
+  }
+  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',run);}else{run();}
+})();
+</script>
 </body>
 </html>
                                                                                                                                                 
