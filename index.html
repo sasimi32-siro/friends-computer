@@ -3072,9 +3072,7 @@ body.m-menu-locked {
 <!-- ===== STARCLEAN 히어로 ===== -->
 <!-- 히어로 섹션 -->
 <section class="hero" id="top">
-  <video class="hero-video-m" autoplay muted loop playsinline webkit-playsinline preload="auto">
-    <source src="hero-mobile.mp4" type="video/mp4">
-  </video>
+  <img class="hero-img-m" src="hero-mobile.webp" alt="프렌즈컴 컴퓨터 수리 기사" width="900" height="900">
   <div class="hero-inner">
     <div class="hero-text">
       <p class="eyebrow">PC 문제 해결과 데이터복구의 든든한 파트너, 프렌즈컴</p>
@@ -4340,9 +4338,16 @@ body.m-menu-locked {
   }
   /* 우측 3개 플로팅(.float-cta) 좌측 20px 이동 */
   .float-cta{ right:28px !important; }
-  /* 모바일 히어로 배경 = 지정 이미지, 영상 숨김 */
+  /* 모바일 히어로 = 밝은 하늘색 배경 + 수리기사 캐릭터 이미지 (영상 제거) */
+  .hero-img-m{ display:none; }
   @media (max-width:768px){
-    .hero{ background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.55)), url('https://images.unsplash.com/photo-1618339220157-daa2cd9ade56?auto=format&fit=crop&w=1080&q=80') center/cover no-repeat !important; }
+    .hero{ background: linear-gradient(180deg,#f3f7ff 0%,#dfeaff 55%,#c9dbff 100%) !important; overflow:hidden !important; justify-content:flex-start !important; padding-top:44px !important; padding-bottom:0 !important; }
+    .hero::after{ display:none !important; }
+    .hero-img-m{ display:block !important; position:absolute !important; left:50%; bottom:-6px; transform:translateX(-50%); width:auto !important; height:46% !important; max-width:none; z-index:1; pointer-events:none; filter:drop-shadow(0 14px 22px rgba(30,64,175,.18)); }
+    .hero-inner{ justify-content:flex-start !important; height:auto !important; }
+    .hero-text .hero-label-m{ color:#2563eb !important; text-shadow:none !important; opacity:1 !important; margin-bottom:10px !important; }
+    .hero-text .hero-headline-m{ color:#0f172a !important; text-shadow:none !important; margin-bottom:14px !important; }
+    .hero-text .subtitle-mobile{ color:#475569 !important; text-shadow:none !important; margin-bottom:20px !important; }
   }
   /* 고정 헤더 높이만큼 앵커 스크롤 보정 */
   #sc-section,#method-section,#process-section,#review-section,#faq-section{ scroll-margin-top:84px; }
