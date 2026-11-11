@@ -2224,6 +2224,7 @@ body.m-menu-locked {
     .qfab a{ width:58px; height:58px; border-radius:50%; display:grid; place-items:center; text-decoration:none;
       box-shadow:0 8px 24px rgba(0,0,0,.14), 0 2px 6px rgba(0,0,0,.08); -webkit-tap-highlight-color:transparent; box-sizing:border-box; }
     .qfab-kakao{ background:#FFCC00; color:#111; }
+    .qfab-apply{ background:#2556f5; color:#fff; }
     .qfab-tel{ background:#111; color:#fff; }
     .qfab a:active{ transform:scale(.94); }
     body.fcbf-typing .qfab{ display:none; }
@@ -2448,6 +2449,14 @@ if (window.matchMedia && matchMedia('(max-width:768px)').matches && 'scrollResto
   history.scrollRestoration = 'manual';
 }
 </script>
+<style>
+/* [임시] 모바일 하단 빠른상담 바 숨김 — 다시 보이게 하려면 이 블록만 지우면 됨 */
+@media (max-width:768px){
+  .qbar{ display:none !important; }
+  .qfab{ bottom:calc(20px + env(safe-area-inset-bottom, 0px)) !important; }
+  body{ padding-bottom:0 !important; }
+}
+</style>
 </head>
 <body>
 
@@ -2776,6 +2785,9 @@ if (window.matchMedia && matchMedia('(max-width:768px)').matches && 'scrollResto
 <div class="qfab">
   <a class="qfab-kakao" href="http://pf.kakao.com/_drdhG/chat" target="_blank" rel="noopener" aria-label="카카오톡 상담">
     <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3C6.5 3 2 6.6 2 11c0 2.8 1.8 5.3 4.6 6.8L5.5 21l3.6-2.1c.9.2 1.9.3 2.9.3 5.5 0 10-3.6 10-8 0-4.4-4.5-8.2-10-8.2z"/></svg>
+  </a>
+  <a class="qfab-apply" href="#apply-form" aria-label="빠른 접수하기">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6a1 1 0 0 1 1 1v1H8V4a1 1 0 0 1 1-1z"/><path d="M8 5H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><path d="M8.5 13.5l2.5 2.5 4.5-5"/></svg>
   </a>
   <a class="qfab-tel" href="tel:1666-4557" aria-label="전화 상담 1666-4557">
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.790 19.790 0 0 1-8.63-3.070 19.500 19.500 0 0 1-6-6 19.790 19.790 0 0 1-3.070-8.670A2 2 0 0 1 4.110 2h3a2 2 0 0 1 2 1.720 12.840 12.840 0 0 0 .7 2.810 2 2 0 0 1-.45 2.110L8.090 9.910a16 16 0 0 0 6 6l1.270-1.270a2 2 0 0 1 2.110-.45 12.840 12.840 0 0 0 2.810.7A2 2 0 0 1 22 16.920z"/></svg>
