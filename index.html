@@ -3010,7 +3010,7 @@ body.m-menu-locked {
 <div class="evt-bar" role="note"><span class="evt-emo" aria-hidden="true">🎉</span><b>출장비 무료</b><span>이벤트 진행 중!</span></div>
 <header class="topnav" id="topnav">
   <div class="logo">
-    <a href="#top"><picture><source media="(max-width:768px)" srcset="logob1.webp"><img class="fc-logo-img" src="logogo.png" alt="프렌즈컴 컴퓨터수리데이터복구" /></picture></a>
+    <a href="#top"><picture><source media="(max-width:768px)" srcset="logob1.webp"><img class="fc-logo-img" src="logogo.png" alt="프렌즈컴 컴퓨터수리데이터복구" /></picture><span class="fc-logo-txt"><svg class="fc-logo-ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="4.500" y="5" width="15" height="10.500" rx="1.600"/><path d="M2.500 19h19"/><path d="M10 19l.500-1.200h3l.500 1.200"/></svg><b>프렌즈컴</b><em>컴퓨터수리 데이터복구</em></span></a>
   </div>
   <nav class="topnav-menu">
     <a href="#sc-section">회사소개</a>
@@ -3046,7 +3046,7 @@ body.m-menu-locked {
 <div class="m-menu-overlay" id="mMenuOverlay" aria-hidden="true"></div>
 <aside class="m-menu-panel" id="mMenuPanel" aria-hidden="true" role="dialog" aria-label="모바일 메뉴">
   <div class="m-menu-header">
-    <picture><source media="(max-width:768px)" srcset="logob1.webp"><img class="fc-logo-img m-menu-logo" src="logogo.png" alt="프렌즈컴 컴퓨터수리데이터복구" /></picture>
+    <picture><source media="(max-width:768px)" srcset="logob1.webp"><img class="fc-logo-img m-menu-logo" src="logogo.png" alt="프렌즈컴 컴퓨터수리데이터복구" /></picture><span class="fc-logo-txt"><svg class="fc-logo-ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="4.500" y="5" width="15" height="10.500" rx="1.600"/><path d="M2.500 19h19"/><path d="M10 19l.500-1.200h3l.500 1.200"/></svg><b>프렌즈컴</b><em>컴퓨터수리 데이터복구</em></span>
     <button class="m-menu-close" id="mMenuClose" aria-label="메뉴 닫기">
       <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <line x1="6" y1="6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
@@ -4414,8 +4414,9 @@ body.m-menu-locked {
       background:linear-gradient(180deg, rgba(40,84,214,0) 0%, rgba(40,84,214,.70) 50%, rgba(36,76,200,.96) 100%); }
     /* 히어로 = 사진 한 장 (파란 배경·그라데이션 없음) */
     .hs-s1{ background:#0a0c16; }
-    /* PC 히어로와 같은 사진 + 글씨가 읽히도록 옅은 어두운 막 (PC는 50~62%, 모바일은 그보다 옅게) */
-    .hs-slide::after, .hs-s1::after{ display:block; top:0; height:auto; background:linear-gradient(180deg, rgba(0,0,0,.22) 0%, rgba(0,0,0,.30) 45%, rgba(0,0,0,.58) 100%); }
+    /* 히어로 사진 위에 검은 막을 덮어 밝기 조절: --hero-dim 숫자만 바꾸면 됨 (0 = 원본 밝기, 1 = 완전 검정) */
+    .hero{ --hero-dim:.70; }
+    .hs-slide::after, .hs-s1::after{ display:block; top:0; height:auto; background:rgba(0,0,0,var(--hero-dim)); }
     .hero-img-m{ display:block !important; position:absolute !important; left:0; top:0; right:auto; bottom:auto; transform:none;
       width:100% !important; height:100% !important; max-width:none; max-height:none; object-fit:cover; object-position:50% 50%;
       z-index:1; pointer-events:none; filter:none; }
@@ -4426,7 +4427,7 @@ body.m-menu-locked {
     .hx-copy{ position:absolute; left:22px; right:22px; bottom:24px; z-index:3; text-align:left; }
     .hx-title{ margin:0 0 9px; font-size:clamp(27px, 7.6vw, 34px); font-weight:800; line-height:1.24; letter-spacing:-0.05em; color:#fff;
       text-shadow:0 2px 12px rgba(0,0,0,.55); }
-    .hx-sub{ margin:0; font-size:15px; font-weight:500; line-height:1.45; letter-spacing:-0.03em; color:rgba(255,255,255,.95); text-shadow:0 1px 8px rgba(0,0,0,.6); }
+    .hx-sub{ margin:0; font-size:18px; font-weight:500; line-height:1.45; letter-spacing:-0.03em; color:rgba(255,255,255,.95); text-shadow:0 1px 8px rgba(0,0,0,.6); }
 
 
     /* ===== 하단 고정 빠른상담 바 (어두운 반투명, 각진 입력칸) ===== */
@@ -4503,6 +4504,29 @@ body.m-menu-locked {
     .hero{ height:calc(100vh - 96px) !important; height:calc(100svh - 96px) !important; margin:0 !important; border-radius:0 !important; }
     /* 문구: 가운데 정렬, 세로는 중간보다 살짝 위 */
     .hx-copy{ top:40% !important; bottom:auto !important; transform:translateY(-50%); text-align:center !important; }
+  }
+  /* 모바일 상단바: 글자 로고(이미지 로고 없음). 첫 화면에서는 히어로 위에 투명 + 흰 글씨, 스크롤하면 옅은 회색 + 검정 글씨 */
+  .fc-logo-txt{ display:none; }
+  @media (max-width:768px){
+    .topnav .logo picture, .m-menu-panel picture{ display:none !important; }
+    .fc-logo-txt{ display:inline-flex; align-items:center; gap:6px; color:#111; white-space:nowrap; text-decoration:none; }
+    .fc-logo-txt b{ font-size:18px; font-weight:800; letter-spacing:-0.05em; line-height:1; }
+    .fc-logo-txt em{ font-style:normal; font-size:clamp(12px, 3.6vw, 14.5px); font-weight:600; letter-spacing:-0.04em; line-height:1; margin-left:1px; position:relative; top:1px; }
+    /* 노트북 아이콘: 글자색을 따라감 (첫 화면 흰색, 스크롤 후 검정) */
+    .fc-logo-ico{ width:22px; height:22px; flex:0 0 auto; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+    .topnav .logo a{ text-decoration:none; display:inline-flex; align-items:center; }
+    /* 히어로를 상단바 밑까지 올림: 위 여백은 이벤트 띠(40px)만 */
+    body{ padding-top:40px !important; }
+    .hero{ height:calc(100vh - 40px) !important; height:calc(100svh - 40px) !important; }
+    /* 첫 화면(맨 위) */
+    #topnav, #topnav.scrolled, #topnav.is-scrolled, #topnav.pill{ background:transparent !important; border-color:transparent !important; box-shadow:none !important;
+      -webkit-backdrop-filter:none !important; backdrop-filter:none !important; transition:top .25s ease, background-color .25s ease; }
+    .topnav .fc-logo-txt{ color:#fff; text-shadow:0 1px 10px rgba(0,0,0,.45); transition:color .25s ease; }
+    .topnav-right .btn-menu{ color:#fff !important; background:transparent !important; transition:color .25s ease; }
+    /* 스크롤을 내린 뒤 */
+    html.evt-off #topnav{ background:#f3f4f6 !important; }
+    html.evt-off .topnav .fc-logo-txt{ color:#111; text-shadow:none; }
+    html.evt-off .topnav-right .btn-menu{ color:#111 !important; }
   }
   /* 고정 헤더 높이만큼 앵커 스크롤 보정 */
   #sc-section,#method-section,#process-section,#review-section,#faq-section{ scroll-margin-top:84px; }
