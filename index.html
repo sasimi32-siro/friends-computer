@@ -3010,7 +3010,7 @@ body.m-menu-locked {
 <div class="evt-bar" role="note"><span class="evt-emo" aria-hidden="true">🎉</span><b>출장비 무료</b><span>이벤트 진행 중!</span></div>
 <header class="topnav" id="topnav">
   <div class="logo">
-    <a href="#top"><picture><source media="(max-width:768px)" srcset="logob1.webp"><img class="fc-logo-img" src="logogo.png" alt="프렌즈컴 컴퓨터수리데이터복구" /></picture><span class="fc-logo-txt"><svg class="fc-logo-ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="4.500" y="5" width="15" height="10.500" rx="1.600"/><path d="M2.500 19h19"/><path d="M10 19l.500-1.200h3l.500 1.200"/></svg><b>프렌즈컴</b><em>컴퓨터수리 데이터복구</em></span></a>
+    <a href="#top"><picture><source media="(max-width:768px)" srcset="logob1.webp"><img class="fc-logo-img" src="logogo.png" alt="프렌즈컴 컴퓨터수리데이터복구" /></picture><span class="fc-logo-txt"><i class="fc-logo-mark" aria-hidden="true"></i><b>프렌즈컴</b></span></a>
   </div>
   <nav class="topnav-menu">
     <a href="#sc-section">회사소개</a>
@@ -3046,7 +3046,7 @@ body.m-menu-locked {
 <div class="m-menu-overlay" id="mMenuOverlay" aria-hidden="true"></div>
 <aside class="m-menu-panel" id="mMenuPanel" aria-hidden="true" role="dialog" aria-label="모바일 메뉴">
   <div class="m-menu-header">
-    <picture><source media="(max-width:768px)" srcset="logob1.webp"><img class="fc-logo-img m-menu-logo" src="logogo.png" alt="프렌즈컴 컴퓨터수리데이터복구" /></picture><span class="fc-logo-txt"><svg class="fc-logo-ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="4.500" y="5" width="15" height="10.500" rx="1.600"/><path d="M2.500 19h19"/><path d="M10 19l.500-1.200h3l.500 1.200"/></svg><b>프렌즈컴</b><em>컴퓨터수리 데이터복구</em></span>
+    <picture><source media="(max-width:768px)" srcset="logob1.webp"><img class="fc-logo-img m-menu-logo" src="logogo.png" alt="프렌즈컴 컴퓨터수리데이터복구" /></picture><span class="fc-logo-txt"><i class="fc-logo-mark" aria-hidden="true"></i><b>프렌즈컴</b></span>
     <button class="m-menu-close" id="mMenuClose" aria-label="메뉴 닫기">
       <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <line x1="6" y1="6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
@@ -4509,11 +4509,10 @@ body.m-menu-locked {
   .fc-logo-txt{ display:none; }
   @media (max-width:768px){
     .topnav .logo picture, .m-menu-panel picture{ display:none !important; }
-    .fc-logo-txt{ display:inline-flex; align-items:center; gap:6px; color:#111; white-space:nowrap; text-decoration:none; }
-    .fc-logo-txt b{ font-size:18px; font-weight:800; letter-spacing:-0.05em; line-height:1; }
-    .fc-logo-txt em{ font-style:normal; font-size:clamp(12px, 3.6vw, 14.5px); font-weight:600; letter-spacing:-0.04em; line-height:1; margin-left:1px; position:relative; top:1px; }
-    /* 노트북 아이콘: 글자색을 따라감 (첫 화면 흰색, 스크롤 후 검정) */
-    .fc-logo-ico{ width:22px; height:22px; flex:0 0 auto; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+    .fc-logo-txt{ display:inline-flex; align-items:center; gap:7px; color:#111; white-space:nowrap; text-decoration:none; }
+    .fc-logo-txt b{ font-size:20px; font-weight:500; letter-spacing:-0.05em; line-height:1; }
+    /* 파란 로고 마크 (글자 높이에 맞춤, 136:96 비율) */
+    .fc-logo-mark{ flex:0 0 auto; width:29px; height:20.5px; background:url(data:image/webp;base64,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) center/contain no-repeat; }
     .topnav .logo a{ text-decoration:none; display:inline-flex; align-items:center; }
     /* 히어로를 상단바 밑까지 올림: 위 여백은 이벤트 띠(40px)만 */
     body{ padding-top:40px !important; }
@@ -4524,7 +4523,8 @@ body.m-menu-locked {
     .topnav .fc-logo-txt{ color:#fff; text-shadow:0 1px 10px rgba(0,0,0,.45); transition:color .25s ease; }
     .topnav-right .btn-menu{ color:#fff !important; background:transparent !important; transition:color .25s ease; }
     /* 스크롤을 내린 뒤 */
-    html.evt-off #topnav{ background:#f3f4f6 !important; }
+    /* 스크롤 후 배경: 옅은 회색을 살짝 투명하게 (뒤 내용이 은은히 비침) */
+    html.evt-off #topnav{ background:rgba(243,244,246,.82) !important; -webkit-backdrop-filter:blur(6px) !important; backdrop-filter:blur(6px) !important; }
     html.evt-off .topnav .fc-logo-txt{ color:#111; text-shadow:none; }
     html.evt-off .topnav-right .btn-menu{ color:#111 !important; }
   }
