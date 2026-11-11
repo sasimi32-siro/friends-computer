@@ -2250,7 +2250,7 @@ body.m-menu-locked {
     /* 히어로: 좌우·위 여백과 둥근 모서리 없이 화면 폭을 꽉 채움 */
     .hero{ margin:0 !important; border-radius:0 !important; }
     /* 문구: 가운데 정렬, 세로는 중간보다 살짝 위 */
-    .hx-copy{ top:calc(35% - 12px) !important; bottom:auto !important; transform:translateY(-50%); text-align:center !important; }
+    .hx-copy{ top:50% !important; bottom:auto !important; transform:translateY(-50%); text-align:center !important; }
   }
   /* 모바일 상단바: [햄버거] [로고] …… [이벤트 문구]. 항상 흰 배경 + 검정 글씨, 히어로는 상단바 아래에서 시작 */
   .fc-logo-m, .nav-evt{ display:none; }
@@ -2276,7 +2276,7 @@ body.m-menu-locked {
     body{ padding-top:80px !important; }
     #apply-form{ scroll-margin-top:80px !important; }
     /* 히어로: 가로는 화면 폭 꽉, 세로는 고정 비율 (가로 1080 : 세로 1452, 약 3:4). 폰 화면 높이와 무관하게 같은 모양 */
-    .hero{ width:100% !important; height:auto !important; aspect-ratio:4 / 4.8; }
+    .hero{ width:100% !important; height:auto !important; aspect-ratio:4 / 5.2; }
   }
   /* 좁은 폰(폭 400px 이하): 진행절차 카드 안 그림이 좁아져 말풍선 글씨가 어색하게 줄바꿈되던 것 보정 */
   @media (max-width:768px){ .p4-card .cb{ max-width:100% !important; white-space:nowrap; } }
@@ -2452,9 +2452,8 @@ if (window.matchMedia && matchMedia('(max-width:768px)').matches && 'scrollResto
 /* 모바일: "재방문율 80%" 제목 숨기고, 무상 A/S 카드가 첫 화면에 바로 보이게 */
 @media (max-width:768px){
   .why-sec .why-title{ display:none !important; }
-  .why-sec{ padding-top:30px !important; }
+  .why-sec{ padding-top:40px !important; }
   .why-sec .why-cards{ gap:24px !important; }
-  .why-cards .why-card:first-child{ opacity:1 !important; transform:none !important; }
 }
 </style>
 <style>
@@ -2465,8 +2464,8 @@ if (window.matchMedia && matchMedia('(max-width:768px)').matches && 'scrollResto
 }
 </style>
 <style>
-/* PC: 신뢰 카드 등장 효과를 더 확실하게 (아래에서 올라오며 나타남) */
-@media (min-width:769px){
+/* 신뢰 카드 등장 효과를 더 확실하게 (아래에서 올라오며 나타남) — PC·모바일 공통 */
+@media all{
   .why-card.sr{ transform:translateY(60px); transition:opacity .8s cubic-bezier(.22,.61,.36,1), transform .8s cubic-bezier(.22,.61,.36,1); }
   .why-card.sr.sr-show{ transform:none; }
 }
@@ -3995,13 +3994,13 @@ window.addEventListener('scroll',onScroll,{passive:true}); window.addEventListen
         io.unobserve(el);
       });
     },{threshold:0.12, rootMargin:'0px 0px -8% 0px'});
-    /* PC: 신뢰 카드(무상 A/S·당일 출동…)는 하단 고정바 위로 충분히 올라왔을 때 등장 */
-    var pcWhy=window.matchMedia&&matchMedia('(min-width:769px)').matches;
-    var io2=pcWhy?new IntersectionObserver(function(entries){
+    /* 신뢰 카드(무상 A/S·당일 출동…)는 하단 고정바 위로 충분히 올라왔을 때 등장 (PC·모바일 공통) */
+    var isMob=window.matchMedia&&matchMedia('(max-width:768px)').matches;
+    var io2=('IntersectionObserver' in window)?new IntersectionObserver(function(entries){
       var shown=entries.filter(function(e){return e.isIntersecting;});
       shown.sort(function(a,b){return (a.boundingClientRect.top-b.boundingClientRect.top)||(a.boundingClientRect.left-b.boundingClientRect.left);});
       shown.forEach(function(e,i){ var el=e.target; el.style.transitionDelay=(Math.min(i,8)*120)+'ms'; el.classList.add('sr-show'); io2.unobserve(el); });
-    },{threshold:0.2, rootMargin:'0px 0px -22% 0px'}):null;
+    },{threshold:0.2, rootMargin:isMob?'0px 0px -28% 0px':'0px 0px -22% 0px'}):null;
     els.forEach(function(el){ if(io2&&el.classList.contains('why-card')) io2.observe(el); else io.observe(el); });
   }
   if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',run);}else{run();}
