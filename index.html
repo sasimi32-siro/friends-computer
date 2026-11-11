@@ -2278,7 +2278,7 @@ body.m-menu-locked {
     body{ padding-top:80px !important; }
     #apply-form{ scroll-margin-top:80px !important; }
     /* 히어로: 가로는 화면 폭 꽉, 세로는 고정 비율 (가로 1080 : 세로 1452, 약 3:4). 폰 화면 높이와 무관하게 같은 모양 */
-    .hero{ width:100% !important; height:auto !important; aspect-ratio:4 / 5.2; }
+    .hero{ width:100% !important; height:auto !important; aspect-ratio:4 / 4.8; }
   }
   /* 좁은 폰(폭 400px 이하): 진행절차 카드 안 그림이 좁아져 말풍선 글씨가 어색하게 줄바꿈되던 것 보정 */
   @media (max-width:768px){ .p4-card .cb{ max-width:100% !important; white-space:nowrap; } }
@@ -2462,8 +2462,42 @@ if (window.matchMedia && matchMedia('(max-width:768px)').matches && 'scrollResto
 /* 모바일: "재방문율 80%" 제목 숨기고, 무상 A/S 카드가 첫 화면에 바로 보이게 */
 @media (max-width:768px){
   .why-sec .why-title{ display:none !important; }
-  .why-sec{ padding-top:20px !important; }
+  .why-sec{ padding-top:30px !important; }
+  .why-sec .why-cards{ gap:24px !important; }
   .why-cards .why-card:first-child{ opacity:1 !important; transform:none !important; }
+}
+</style>
+<style>
+/* 모바일: 우측 플로팅 대신 하단 알약 메뉴 (살짝 투명) */
+.mpill{ display:none; }
+@media (max-width:768px){
+  .qfab{ display:none !important; }
+  .mpill{ display:flex; position:fixed; left:12px; right:12px; bottom:calc(12px + env(safe-area-inset-bottom, 0px)); z-index:150;
+    height:68px; padding:8px; box-sizing:border-box; border-radius:34px;
+    background:linear-gradient(100deg, rgba(247,240,230,.86), rgba(236,238,241,.86));
+    -webkit-backdrop-filter:blur(14px) saturate(1.3); backdrop-filter:blur(14px) saturate(1.3);
+    box-shadow:0 10px 30px rgba(0,0,0,.16), 0 2px 8px rgba(0,0,0,.08), inset 0 0 0 1px rgba(255,255,255,.6); }
+  .mpill a{ flex:1 1 0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:5px; border-radius:26px;
+    color:#111; text-decoration:none; -webkit-tap-highlight-color:transparent; }
+  .mpill a svg{ width:22px; height:22px; }
+  .mpill a span{ font-size:12.5px; font-weight:700; letter-spacing:-0.04em; line-height:1; }
+  .mpill a.on{ color:#2556f5; background:rgba(255,255,255,.9); box-shadow:0 3px 10px rgba(0,0,0,.10); }
+  .mpill a:active{ transform:scale(.96); }
+  body{ padding-bottom:calc(92px + env(safe-area-inset-bottom, 0px)) !important; }
+}
+</style>
+<style>
+/* PC: 하단 빠른 출장신청 바를 스크롤 안 해도 처음부터 고정 표시 */
+@media (min-width:769px){
+  .sticky-form{ transform:none !important; transition:none !important; }
+  .site-foot{ padding-bottom:150px !important; }
+}
+</style>
+<style>
+/* PC: 신뢰 카드 등장 효과를 더 확실하게 (아래에서 올라오며 나타남) */
+@media (min-width:769px){
+  .why-card.sr{ transform:translateY(60px); transition:opacity .8s cubic-bezier(.22,.61,.36,1), transform .8s cubic-bezier(.22,.61,.36,1); }
+  .why-card.sr.sr-show{ transform:none; }
 }
 </style>
 </head>
@@ -2803,6 +2837,22 @@ if (window.matchMedia && matchMedia('(max-width:768px)').matches && 'scrollResto
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.790 19.790 0 0 1-8.63-3.070 19.500 19.500 0 0 1-6-6 19.790 19.790 0 0 1-3.070-8.670A2 2 0 0 1 4.110 2h3a2 2 0 0 1 2 1.720 12.840 12.840 0 0 0 .7 2.810 2 2 0 0 1-.45 2.110L8.090 9.910a16 16 0 0 0 6 6l1.270-1.270a2 2 0 0 1 2.110-.45 12.840 12.840 0 0 0 2.810.7A2 2 0 0 1 22 16.920z"/></svg>
   </a>
 </div>
+
+<!-- 모바일 전용: 하단 알약 메뉴 (전화 · 카톡상담 · 빠른접수) -->
+<nav class="mpill" aria-label="빠른 상담">
+  <a href="tel:1666-4557">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.920v3a2 2 0 0 1-2.180 2 19.790 19.790 0 0 1-8.630-3.070 19.500 19.500 0 0 1-6-6 19.790 19.790 0 0 1-3.070-8.670A2 2 0 0 1 4.110 2h3a2 2 0 0 1 2 1.720 12.840 12.840 0 0 0 .7 2.810 2 2 0 0 1-.45 2.110L8.090 9.910a16 16 0 0 0 6 6l1.270-1.270a2 2 0 0 1 2.110-.45 12.840 12.840 0 0 0 2.810.7A2 2 0 0 1 22 16.920z"/></svg>
+    <span>전화상담</span>
+  </a>
+  <a href="http://pf.kakao.com/_drdhG/chat" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    <span>카톡상담</span>
+  </a>
+  <a href="#apply-form" class="on">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 15l2 2 4-4"/></svg>
+    <span>홈피접수</span>
+  </a>
+</nav>
 
 <!-- ===== WHY (trust cards) ===== -->
 <section class="why-sec" id="sc-section">
@@ -3994,7 +4044,14 @@ window.addEventListener('scroll',onScroll,{passive:true}); window.addEventListen
         io.unobserve(el);
       });
     },{threshold:0.12, rootMargin:'0px 0px -8% 0px'});
-    els.forEach(function(el){ io.observe(el); });
+    /* PC: 신뢰 카드(무상 A/S·당일 출동…)는 하단 고정바 위로 충분히 올라왔을 때 등장 */
+    var pcWhy=window.matchMedia&&matchMedia('(min-width:769px)').matches;
+    var io2=pcWhy?new IntersectionObserver(function(entries){
+      var shown=entries.filter(function(e){return e.isIntersecting;});
+      shown.sort(function(a,b){return (a.boundingClientRect.top-b.boundingClientRect.top)||(a.boundingClientRect.left-b.boundingClientRect.left);});
+      shown.forEach(function(e,i){ var el=e.target; el.style.transitionDelay=(Math.min(i,8)*120)+'ms'; el.classList.add('sr-show'); io2.unobserve(el); });
+    },{threshold:0.2, rootMargin:'0px 0px -22% 0px'}):null;
+    els.forEach(function(el){ if(io2&&el.classList.contains('why-card')) io2.observe(el); else io.observe(el); });
   }
   if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',run);}else{run();}
 })();
