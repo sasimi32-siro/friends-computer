@@ -2468,22 +2468,26 @@ if (window.matchMedia && matchMedia('(max-width:768px)').matches && 'scrollResto
 }
 </style>
 <style>
-/* 모바일: 우측 플로팅 대신 하단 알약 메뉴 (살짝 투명) */
+/* 모바일: 우측 플로팅 대신 하단 알약 메뉴 — 우리에어컨 사이트 하단바와 같은 색·크기·그림자 */
 .mpill{ display:none; }
 @media (max-width:768px){
   .qfab{ display:none !important; }
-  .mpill{ display:flex; position:fixed; left:12px; right:12px; bottom:calc(12px + env(safe-area-inset-bottom, 0px)); z-index:150;
-    height:68px; padding:8px; box-sizing:border-box; border-radius:34px;
-    background:linear-gradient(100deg, rgba(247,240,230,.86), rgba(236,238,241,.86));
-    -webkit-backdrop-filter:blur(14px) saturate(1.3); backdrop-filter:blur(14px) saturate(1.3);
-    box-shadow:0 10px 30px rgba(0,0,0,.16), 0 2px 8px rgba(0,0,0,.08), inset 0 0 0 1px rgba(255,255,255,.6); }
-  .mpill a{ flex:1 1 0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:5px; border-radius:26px;
-    color:#111; text-decoration:none; -webkit-tap-highlight-color:transparent; }
-  .mpill a svg{ width:22px; height:22px; }
-  .mpill a span{ font-size:12.5px; font-weight:700; letter-spacing:-0.04em; line-height:1; }
-  .mpill a.on{ color:#2556f5; background:rgba(255,255,255,.9); box-shadow:0 3px 10px rgba(0,0,0,.10); }
-  .mpill a:active{ transform:scale(.96); }
-  body{ padding-bottom:calc(92px + env(safe-area-inset-bottom, 0px)) !important; }
+  .mpill{ display:flex; position:fixed; left:14px; right:14px; bottom:calc(14px + env(safe-area-inset-bottom, 0px)); z-index:150;
+    background:rgba(255,255,255,.8);
+    -webkit-backdrop-filter:blur(30px) saturate(180%); backdrop-filter:blur(30px) saturate(180%);
+    border:1px solid rgba(255,255,255,.5); border-radius:999px; padding:10px 6px;
+    box-shadow:inset 0 1px 1px rgba(255,255,255,.6), inset 0 -1px 1px rgba(255,255,255,.15), 0 8px 32px rgba(0,0,0,.12), 0 2px 8px rgba(0,0,0,.06);
+    align-items:center; justify-content:space-around; gap:2px; }
+  .mpill a{ flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px; padding:6px 2px; border-radius:999px;
+    background:transparent; color:#1a1a1a; font-size:11.5px; font-weight:600; letter-spacing:-0.02em; text-decoration:none;
+    transition:transform .12s ease, background .15s ease; -webkit-tap-highlight-color:transparent; text-shadow:0 0 1px rgba(255,255,255,.4); }
+  .mpill a:active{ transform:scale(.94); background:rgba(255,255,255,.25); }
+  .mpill a svg{ width:22px; height:22px; stroke:#1a1a1a; stroke-width:2; fill:none; filter:drop-shadow(0 0 1px rgba(255,255,255,.5)); }
+  .mpill a span{ line-height:1.2; }
+  .mpill a.on{ background:rgba(255,255,255,.45); box-shadow:inset 0 1px 1px rgba(255,255,255,.7), 0 2px 6px rgba(0,0,0,.08); }
+  .mpill a.on svg{ stroke:#007AFF; }
+  .mpill a.on span{ color:#007AFF; font-weight:700; }
+  body{ padding-bottom:calc(90px + env(safe-area-inset-bottom, 0px)) !important; }
 }
 </style>
 <style>
