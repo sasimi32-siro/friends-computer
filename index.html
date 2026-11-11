@@ -2276,7 +2276,10 @@ body.m-menu-locked {
     body{ padding-top:80px !important; }
     #apply-form{ scroll-margin-top:80px !important; }
     /* 히어로: 가로는 화면 폭 꽉, 세로는 고정 비율 (가로 1080 : 세로 1452, 약 3:4). 폰 화면 높이와 무관하게 같은 모양 */
-    .hero{ width:100% !important; height:auto !important; aspect-ratio:4 / 5.2; }
+    .hero{ width:100% !important; aspect-ratio:auto !important; min-height:360px !important;
+      /* 히어로 끝 = 하단 빠른상담 바 윗선보다 20px 위 (화면 높이 − 헤더 80 − 하단바 − 20) */
+      height:calc(100vh - 80px - var(--qbar-h, 101px) - 20px) !important;
+      height:calc(100svh - 80px - var(--qbar-h, 101px) - 20px) !important; }
   }
   /* 좁은 폰(폭 400px 이하): 진행절차 카드 안 그림이 좁아져 말풍선 글씨가 어색하게 줄바꿈되던 것 보정 */
   @media (max-width:768px){ .p4-card .cb{ max-width:100% !important; white-space:nowrap; } }
@@ -4010,6 +4013,15 @@ window.addEventListener('scroll',onScroll,{passive:true}); window.addEventListen
 /* 하단 띠 배너 배경 사진 (PC·태블릿 전용, 모바일에서는 배너가 숨겨져 있어 받지 않음) */
 .cta-banner .bgimg{background-image:url('banner.webp');}
 </style>
+<script>
+/* 모바일: 하단 빠른상담 바의 실제 높이를 재서 히어로 높이 계산에 사용 */
+(function(){
+  var bar=document.getElementById('hero-quick-form'); if(!bar) return;
+  function setH(){ if(bar.classList.contains('priv-open')||bar.classList.contains('sms-open')) return;
+    var h=bar.offsetHeight; if(h>0) document.documentElement.style.setProperty('--qbar-h', h+'px'); }
+  setH(); window.addEventListener('load',setH); window.addEventListener('orientationchange',function(){setTimeout(setH,300);});
+})();
+</script>
 </body>
 </html>
                                                                                                                                                 
