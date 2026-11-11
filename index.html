@@ -4262,6 +4262,15 @@ body.m-menu-locked {
 </div>
 
 <script>
+/* 모바일 이벤트 띠: 스크롤을 내리면 숨기고, 맨 위로 오면 다시 보이기 */
+(function(){
+  var root=document.documentElement, off=false;
+  function check(){ var y=window.pageYOffset||root.scrollTop||0, want=y>8; if(want!==off){ off=want; root.classList.toggle('evt-off',off); } }
+  window.addEventListener('scroll',check,{passive:true});
+  check();
+})();
+</script>
+<script>
   // 히어로 영상 자동재생 보장 (모바일 배경 영상)
   (function() {
     var v = document.querySelector('.hero-video-m');
@@ -4417,7 +4426,7 @@ body.m-menu-locked {
     .hx-copy{ position:absolute; left:22px; right:22px; bottom:24px; z-index:3; text-align:left; }
     .hx-title{ margin:0 0 9px; font-size:clamp(27px, 7.6vw, 34px); font-weight:800; line-height:1.24; letter-spacing:-0.05em; color:#fff;
       text-shadow:0 2px 12px rgba(0,0,0,.55); }
-    .hx-sub{ margin:0; font-size:13px; font-weight:500; line-height:1.4; letter-spacing:-0.03em; color:rgba(255,255,255,.95); text-shadow:0 1px 8px rgba(0,0,0,.6); }
+    .hx-sub{ margin:0; font-size:15px; font-weight:500; line-height:1.45; letter-spacing:-0.03em; color:rgba(255,255,255,.95); text-shadow:0 1px 8px rgba(0,0,0,.6); }
 
 
     /* ===== 하단 고정 빠른상담 바 (어두운 반투명, 각진 입력칸) ===== */
@@ -4469,7 +4478,9 @@ body.m-menu-locked {
   }
   /* 모바일 상단바: 새 로고 + 햄버거 (빠른신청·전화문의 텍스트 링크 제거) */
   @media (max-width:768px){
-    .topnav .logo .fc-logo-img{ height:34px !important; width:auto !important; }
+    .topnav .logo .fc-logo-img{ height:34px !important; width:auto !important; mix-blend-mode:multiply; }
+    /* 상단바 배경: 아주 옅은 회색 (스크롤 전·후 동일). 로고 이미지의 흰 바탕은 multiply로 배경에 녹임 */
+    #topnav, #topnav.scrolled, #topnav.is-scrolled, #topnav.pill{ background:#f3f4f6 !important; }
     .m-menu-logo.fc-logo-img{ height:34px !important; width:auto !important; }
     .topnav-txt-link, .topnav-txt-div{ display:none !important; }
     .topnav-right .btn-menu{ display:inline-flex !important; border:0; cursor:pointer; width:44px; height:44px; margin-right:-6px; -webkit-tap-highlight-color:transparent; }
@@ -4478,15 +4489,20 @@ body.m-menu-locked {
   /* 모바일 최상단 이벤트 띠 (파란 배경 + 흰 글씨) */
   .evt-bar{ display:none; }
   @media (max-width:768px){
-    .evt-bar{ display:flex; align-items:center; justify-content:center; gap:6px; position:fixed; left:0; right:0; top:0; height:36px; z-index:999;
-      background:#1f5cf5; color:#fff; font-size:14px; font-weight:400; letter-spacing:-0.03em; white-space:nowrap; }
+    .evt-bar{ display:flex; align-items:center; justify-content:center; gap:6px; position:fixed; left:0; right:0; top:0; height:40px; z-index:999;
+      background:#1f5cf5; color:#fff; font-size:15px; font-weight:400; letter-spacing:-0.03em; white-space:nowrap; }
     .evt-bar b{ font-weight:800; }
-    .evt-bar .evt-emo{ font-size:16px; line-height:1; margin-right:1px; }
-    #topnav{ top:36px !important; }
-    body{ padding-top:92px !important; }
-    html{ scroll-padding-top:36px; }
-    /* 띠 높이(36px)만큼 히어로를 줄여 하단 바 위에서 끝나게 유지 */
-    .hero{ height:calc(100vh - 208px) !important; height:calc(100svh - 208px) !important; }
+    .evt-bar .evt-emo{ font-size:17px; line-height:1; margin-right:1px; }
+    #topnav{ top:40px !important; transition:top .25s ease; }
+    /* 스크롤을 내리면 이벤트 띠는 위로 사라지고 상단바가 맨 위로 붙음 (맨 위로 돌아오면 다시 나옴) */
+    .evt-bar{ transition:transform .25s ease; }
+    html.evt-off .evt-bar{ transform:translateY(-100%); }
+    html.evt-off #topnav{ top:0 !important; }
+    body{ padding-top:96px !important; }
+    /* 히어로: 좌우·위 여백과 둥근 모서리 없이 화면 끝까지 꽉 채움 (반투명 하단 바 뒤까지 이어짐). 96px = 이벤트 띠 40 + 상단바 56 */
+    .hero{ height:calc(100vh - 96px) !important; height:calc(100svh - 96px) !important; margin:0 !important; border-radius:0 !important; }
+    /* 문구: 가운데 정렬, 세로는 중간보다 살짝 위 */
+    .hx-copy{ top:40% !important; bottom:auto !important; transform:translateY(-50%); text-align:center !important; }
   }
   /* 고정 헤더 높이만큼 앵커 스크롤 보정 */
   #sc-section,#method-section,#process-section,#review-section,#faq-section{ scroll-margin-top:84px; }
