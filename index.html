@@ -2191,7 +2191,7 @@ body.m-menu-locked {
 
     /* ===== 하단 고정 빠른상담 바 (위쪽 둥근 모서리, 둥근 입력칸 한 줄) ===== */
     .qbar{ display:block; position:fixed; left:0; right:0; bottom:0; z-index:150; box-sizing:border-box;
-      padding:13px 13px calc(20px + env(safe-area-inset-bottom, 0px)); background:rgba(38,38,40,.80); border-radius:22px 22px 0 0; }
+      padding:13px 13px calc(20px + env(safe-area-inset-bottom, 0px)); background:rgba(38,38,40,.85); border-radius:22px 22px 0 0; }
     .qbar-fields{ display:flex; gap:8px; margin-bottom:11px; }
     .qbar-fields input{ flex:1 1 0; width:0; min-width:0; height:38px; box-sizing:border-box; border:0; outline:0; border-radius:19px;
       background-color:#fff; padding:0 8px; text-align:center; font-family:inherit; font-size:14px; font-weight:500; letter-spacing:-0.04em; color:#111827;
@@ -2377,7 +2377,7 @@ body.m-menu-locked {
     body.fcbf-typing .bottom-cta{ transform:translateY(130%) !important; opacity:0 !important; pointer-events:none !important; }
     #apply{ scroll-margin-top:78px; }
     /* 모바일 푸터: 밝게 정리 + SNS 아이콘 */
-    .site-foot{ background:#fff !important; color:#5b616b !important; padding:8px 0 120px !important; }
+    .site-foot{ background:#fff !important; color:#5b616b !important; padding:8px 0 54px !important; }
     .site-foot .foot-social{ display:flex; gap:12px; margin-bottom:30px; }
     .site-foot .foot-social a{ width:36px; height:36px; border-radius:50%; background:#fff; border:1px solid #e8eaed; box-shadow:0 1px 2px rgba(0,0,0,.035); display:flex; align-items:center; justify-content:center; color:#1a1a1a; }
     .site-foot .foot-social svg{ width:19px; height:19px; }
@@ -2390,9 +2390,15 @@ body.m-menu-locked {
     .site-foot .fbiz,
     .site-foot .fcopy{ display:none !important; }
     .site-foot .foot-minfo{ display:block; }
+    .site-foot .fmi-name{ font-size:20px; font-weight:800; color:#1a1a1a; letter-spacing:-0.02em; }
+    .site-foot .fmi-tel-label{ margin-top:0; font-size:13px; color:#9aa0aa; }
+    .site-foot .fmi-tel{ margin-top:5px; font-size:25px; font-weight:800; letter-spacing:-0.01em; }
+    .site-foot .fmi-tel a{ color:#1a1a1a; text-decoration:none; }
+    .site-foot .fmi-hours{ margin-top:10px; font-size:13px; color:#9aa0aa; line-height:1.8; }
     .site-foot .fmi-line2{ font-size:12px; color:#9aa0aa; letter-spacing:-0.01em; margin-top:9px; }
+    .site-foot .fmi-hr-top + .fmi-line2{ margin-top:0; }
     .site-foot .fmi-hr{ height:1px; background:#e6e8ec; margin:24px 0; }
-    .site-foot .fmi-copy{ font-size:11.5px; color:#b2b8c0; letter-spacing:.01em; }
+    .site-foot .fmi-copy{ margin-top:24px; font-size:11.5px; color:#b2b8c0; letter-spacing:.01em; }
   }
   /* SNS 아이콘 / 모바일 푸터 정보는 모바일 전용 */
   .foot-social{ display:none; }
@@ -3472,16 +3478,18 @@ if (window.matchMedia && matchMedia('(max-width:768px)').matches && 'scrollResto
     <div class="fhours">평일 08:00 - 22:00<br/>주말 및 공휴일 영업합니다.</div>
     <div class="fline"></div>
     <div class="fbiz">
-      BUSINESS LICENCE : 746-55-00127 <a href="#">[사업자정보확인]</a><br/>
+      BUSINESS LICENCE : 546-55-00127<br/>
       E-COMMERCE PERMIT : 2019-서울강남-04563<br/>
-      ADDRESS : 서울특별시 강남구 역삼동 725-36<br/>
-      INFORMATION MANAGER : 장지영(chookbok32@naver.com)
+      INFORMATION MANAGER : 장지영
     </div>
-    <div class="fcopy">Copyright © 2025 프렌즈컴 ALL RIGHTS RESERVED</div>
+    <div class="fcopy">Copyright © 2026 프렌즈컴 ALL RIGHTS RESERVED</div>
     <!-- 모바일 전용 푸터 정보 (레퍼런스 포맷) -->
     <div class="foot-minfo">
-      <div class="fmi-line2">사업자등록번호 : 546-55-00127</div>
-      <div class="fmi-hr"></div>
+      <div class="fmi-tel-label">고객문의 대표전화</div>
+      <div class="fmi-tel"><a href="tel:1666-4557">1666 - 4557</a></div>
+      <div class="fmi-hours">평일 08:00 - 22:00<br/>주말 및 공휴일 영업합니다.</div>
+      <div class="fmi-hr fmi-hr-top"></div>
+      <div class="fmi-line2">BUSINESS LICENCE : 546-55-00127<br/>E-COMMERCE PERMIT : 2019-서울강남-04563<br/>INFORMATION MANAGER : 장지영</div>
       <div class="fmi-copy">© 2026 프렌즈컴. All rights reserved.</div>
     </div>
   </div>
