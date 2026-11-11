@@ -2189,35 +2189,37 @@ body.m-menu-locked {
     .hx-sub{ margin:0; font-size:18px; font-weight:500; line-height:1.45; letter-spacing:-0.03em; color:rgba(255,255,255,.95); text-shadow:0 1px 8px rgba(0,0,0,.6); }
 
 
-    /* ===== 하단 고정 빠른상담 바 (어두운 반투명, 각진 입력칸) ===== */
+    /* ===== 하단 고정 빠른상담 바 (위쪽 둥근 모서리, 둥근 입력칸 한 줄) ===== */
     .qbar{ display:block; position:fixed; left:0; right:0; bottom:0; z-index:150; box-sizing:border-box;
-      padding:8px 6px calc(8px + env(safe-area-inset-bottom, 0px)); background:rgba(38,38,40,.90); }
-    .qbar-fields{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:6px; margin-bottom:7px; }
-    .qbar-fields input{ width:100%; min-width:0; height:41px; box-sizing:border-box; border:1px solid #b9bcc2; outline:0; border-radius:0;
-      background-color:#fff; padding:0 10px; font-family:inherit; font-size:13px; font-weight:500; letter-spacing:-0.04em; color:#111827;
+      padding:13px 13px calc(20px + env(safe-area-inset-bottom, 0px)); background:rgba(38,38,40,.80); border-radius:22px 22px 0 0; }
+    .qbar-fields{ display:flex; gap:8px; margin-bottom:11px; }
+    .qbar-fields input{ flex:1 1 0; width:0; min-width:0; height:38px; box-sizing:border-box; border:0; outline:0; border-radius:19px;
+      background-color:#fff; padding:0 8px; text-align:center; font-family:inherit; font-size:14px; font-weight:500; letter-spacing:-0.04em; color:#111827;
       -webkit-appearance:none; appearance:none; }
+    .qbar-fields input[name="name"]{ flex-grow:.8; }
+    .qbar-fields input[name="address"]{ flex-grow:1.2; }
     /* 아이폰: 16px 미만이면 입력 시 화면이 확대되므로 16px 유지 */
-    @supports (-webkit-touch-callout:none){ .qbar-fields input{ font-size:16px; letter-spacing:-0.07em; padding:0 7px; } }
+    @supports (-webkit-touch-callout:none){ .qbar-fields input{ font-size:16px; letter-spacing:-0.07em; padding:0 5px; } }
     .qbar-fields input::placeholder{ color:#8a8d93; }
-    .qbar-fields input:focus{ border-color:#2f6bff; box-shadow:0 0 0 1px #2f6bff; }
-    .qbar-row{ display:flex; align-items:center; gap:6px; padding-left:8px; }
-    .qbar-agree{ position:relative; display:flex; align-items:center; gap:8px; flex:0 0 auto; color:#fff; font-size:12px; font-weight:500; letter-spacing:-0.04em; white-space:nowrap; cursor:pointer; }
+    .qbar-fields input:focus{ box-shadow:0 0 0 2px #2f6bff; }
+    .qbar-row{ display:flex; align-items:center; justify-content:center; gap:16px; }
+    .qbar-agree{ position:relative; display:flex; align-items:center; gap:6px; flex:0 0 auto; color:#fff; font-size:12px; font-weight:500; letter-spacing:-0.04em; white-space:nowrap; cursor:pointer; }
     .qbar-agree input{ position:absolute; left:0; top:50%; width:17px; height:17px; margin:-8.5px 0 0; opacity:0; cursor:pointer; }
-    .qbar-agree i{ width:17px; height:17px; flex:0 0 auto; border-radius:2px; background:#fff center/86% no-repeat; }
+    .qbar-agree i{ width:17px; height:17px; flex:0 0 auto; border-radius:3px; background:#fff center/86% no-repeat; }
     .qbar-agree input:checked + i{ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 12.500l4.500 4.500L19 7' fill='none' stroke='%23222' stroke-width='2.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); }
     .qbar-agree input:focus-visible + i{ box-shadow:0 0 0 2px #7fb0ff; }
-    .qbar-agree a{ margin-left:3px; font-size:10.5px; color:#b4b7bd; text-decoration:underline; }
-    .qbar button[type="submit"]{ flex:1 1 auto; min-width:0; height:35px; margin-left:auto; padding:0 8px; border:0; border-radius:0; background:#2556f5; color:#fff;
-      font-family:inherit; font-size:16px; font-weight:800; letter-spacing:-0.03em; white-space:nowrap; cursor:pointer;
-      display:flex; align-items:center; justify-content:center; gap:10px; }
-    .qbar button[type="submit"]::after{ content:""; width:7px; height:7px; flex:0 0 auto; border-top:2px solid #fff; border-right:2px solid #fff; transform:rotate(45deg); margin-left:2px; }
+    .qbar-agree a{ margin-left:3px; font-size:11px; color:#b4b7bd; text-decoration:underline; }
+    .qbar button[type="submit"]{ flex:0 0 auto; height:38px; padding:0 12px 0 14px; border:0; border-radius:19px; background:#2556f5; color:#fff;
+      font-family:inherit; font-size:14px; font-weight:800; letter-spacing:-0.04em; white-space:nowrap; cursor:pointer;
+      display:flex; align-items:center; justify-content:center; gap:6px; }
+    .qbar button[type="submit"]::after{ content:""; width:6px; height:6px; flex:0 0 auto; border-top:2px solid #fff; border-right:2px solid #fff; transform:rotate(45deg); }
     .qbar button[type="submit"]:disabled{ opacity:.7; }
-    .qbar-priv{ display:none; margin:0 0 7px; padding:9px 12px; background:rgba(255,255,255,.97); color:#1f2937; font-size:11.5px; line-height:1.55; letter-spacing:-0.03em; }
-    .qbar.priv-open .qbar-priv{ display:block; }
+    .qbar-priv, .qbar-sms{ display:none; margin:0 0 9px; padding:9px 12px; border-radius:12px; background:rgba(255,255,255,.97); color:#1f2937; font-size:11.5px; line-height:1.55; letter-spacing:-0.03em; }
+    .qbar.priv-open .qbar-priv, .qbar.sms-open .qbar-sms{ display:block; }
 
     /* ===== 우측 플로팅 (카톡 상담 · 전화 상담) ===== */
     .qfab{ display:flex; flex-direction:column; align-items:center; gap:10px; position:fixed; right:11px; z-index:140;
-      bottom:calc(112px + env(safe-area-inset-bottom, 0px)); }
+      bottom:calc(114px + env(safe-area-inset-bottom, 0px)); }
     /* PC 플로팅과 같은 모양 (아이콘만) */
     .qfab a{ width:58px; height:58px; border-radius:50%; display:grid; place-items:center; text-decoration:none;
       box-shadow:0 8px 24px rgba(0,0,0,.14), 0 2px 6px rgba(0,0,0,.08); -webkit-tap-highlight-color:transparent; box-sizing:border-box; }
@@ -2225,10 +2227,12 @@ body.m-menu-locked {
     .qfab-tel{ background:#111; color:#fff; }
     .qfab a:active{ transform:scale(.94); }
     body.fcbf-typing .qfab{ display:none; }
+    /* 하단바 "자세히" 펼쳤을 때 플로팅 버튼과 겹치지 않게 잠깐 숨김 */
+    body:has(.qbar.priv-open) .qfab, body:has(.qbar.sms-open) .qfab{ display:none; }
 
     /* 기존 하단 메뉴바는 고정 상담 바와 겹치므로 모바일에서 숨김 */
     .bottom-cta{ display:none !important; }
-    body{ padding-bottom:calc(112px + env(safe-area-inset-bottom, 0px)) !important; }
+    body{ padding-bottom:calc(114px + env(safe-area-inset-bottom, 0px)) !important; }
   }
   /* 모바일 상단바: 새 로고 + 햄버거 (빠른신청·전화문의 텍스트 링크 제거) */
   @media (max-width:768px){
@@ -2749,15 +2753,21 @@ if (window.matchMedia && matchMedia('(max-width:768px)').matches && 'scrollResto
       <input name="name" type="text" placeholder="이름" autocomplete="name" required>
       <input name="phone" type="tel" placeholder="연락처" autocomplete="tel" inputmode="tel" required>
       <input name="address" type="text" placeholder="주소입력" autocomplete="street-address" required>
+      <button type="submit">빠른 상담신청</button>
     </div>
     <p class="qbar-priv">수집 항목: 이름, 전화번호, 주소<br>이용 목적: 상담 안내<br>입력하신 정보는 상담 안내 목적으로만 사용되며, 안전하게 보호됩니다.</p>
+    <p class="qbar-sms">상담 접수 확인, 방문 일정 안내를 문자(SMS)로 보내드립니다.</p>
     <div class="qbar-row">
+      <label class="qbar-agree">
+        <input type="checkbox" name="sms" value="동의" checked aria-label="SMS 수신 동의">
+        <i aria-hidden="true"></i>
+        <span>SMS 수신 동의 <a href="#" class="qbar-sms-toggle">자세히</a></span>
+      </label>
       <label class="qbar-agree">
         <input type="checkbox" checked required aria-label="개인정보처리방침 동의">
         <i aria-hidden="true"></i>
         <span>개인정보처리방침 동의 <a href="#" class="qbar-priv-toggle">자세히</a></span>
       </label>
-      <button type="submit">빠른 상담신청</button>
     </div>
   </form>
 </div>
@@ -3866,7 +3876,7 @@ window.addEventListener('scroll',onScroll,{passive:true}); window.addEventListen
   var ACCESS_KEY='7a732ceb-a7e4-44f6-888e-ed509d1f0801';
   var FORM_SUBJECT='[프렌즈컴] 새로운 문의가 도착했습니다';
   var FROM_NAME='프렌즈컴 홈페이지';
-  var labelMap={name:'성함',phone:'연락처',email:'이메일',address:'주소',message:'문의 내용',service:'서비스'};
+  var labelMap={name:'성함',phone:'연락처',email:'이메일',address:'주소',message:'문의 내용',service:'서비스',sms:'SMS 수신 동의'};
   function attach(form){
     if(!form) return;
     var btn=form.querySelector('[type="submit"]')||form.querySelector('button');
@@ -3891,6 +3901,8 @@ window.addEventListener('scroll',onScroll,{passive:true}); window.addEventListen
   attach(document.getElementById('fcHeroForm'));
   var qb=document.getElementById('hero-quick-form'), qt=qb&&qb.querySelector('.qbar-priv-toggle');
   if(qt) qt.addEventListener('click',function(e){ e.preventDefault(); qb.classList.toggle('priv-open'); });
+  var qs=qb&&qb.querySelector('.qbar-sms-toggle');
+  if(qs) qs.addEventListener('click',function(e){ e.preventDefault(); qb.classList.toggle('sms-open'); });
 })();
 </script>
 <script>
